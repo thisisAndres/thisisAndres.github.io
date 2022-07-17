@@ -4,17 +4,19 @@ const Weather =  (props) => {
     //variables and constants
     const [apiCity, setApiCity] = useState("")
     const [city, setCity] = useState("")
+    const [icon, setIcon] = useState("")
     const [render, setRender] = useState(false)
     const URL = "https://api.openweathermap.org/data/2.5/weather?q="+apiCity+"&units=metric&appid=";
     const KEY = "e4a6424c806d766d26025dcbbace4b2d";
     const [weather, setWeather] = useState("")
-
+    const iconURL = "http://openweathermap.org/img/wn/"+icon+"@2x.png"
 
     //Get info from api
-    function loadApi(){
+    function loadApi (){
         fetch(URL+KEY)  
         .then(response => response.json())
         .then(data => {
+            setIcon(data.weather[0].icon)
             setCity(data.name)
             setWeather(data.main.temp)
         });
@@ -35,15 +37,18 @@ const Weather =  (props) => {
         setApiCity("")
         props.renderText();
     }
+
+
     return(
         <div>
         {  render && <div>
             <h1>{city}</h1> 
-            <p>Temperature: {weather}°</p>
+            <p>Temperature: {weather}°</p> 
+            <img src={iconURL} alt="icon"/>
         </div>}
 
             <form className="">
-                    <input className="input" value={apiCity} onChange={onChange} />
+                    <input autoFocus placeholder="City name" className="input" value={apiCity} onChange={onChange} />
                     <button className="button" onClick={getWeather}>Get Weather</button>
             </form>
          </div>

@@ -2,6 +2,10 @@ form{
     padding: 0 0 45px 0;
 }
 
+img{
+    height: 200px;
+    width: 200px;
+}
 .button{
     color: #DCD7C9;
     border-radius: 10px;
@@ -10,6 +14,13 @@ form{
     border: 2px solid;
     padding: 0 3em;
     text-decoration: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: #A27B5C;
+    transform: translateY(4px);
 }
 
 .input{
